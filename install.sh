@@ -8,23 +8,13 @@ then
 	echo "You have not set your BOOTTOTORO env variable!"
 	echo "use export BOOTTOTORO=/dev/XXXX"
 else
-fdisk $DISK
-fdisk /dev/DEV<<EOF
-n
-
-
-+512M
-t
-5
-1
-n
-
-
-
-w
-EOF
-
-mkfs.fat -F32 {$DISK}1
-mkfs.ext4 {$DISK}2
+	mkfs.ext4 $ROOTTOTOTORO
+ 	mkfs.fat -F32 $BOOTTOTORO
+  	mount $ROOTTOTOTORO /mnt
+   	mount $BOOTTOTOTORO /mnt/boot --mkdir
+    	pacstrap -K /mnt linux linux-firmware base base-devel
+     	wget https://raw.githubusercontent.com/nowcat123/toroto-linux/master/packages.txt -o /mnt/packages.txt
+      	arch-chroot /mnt pacman -S - < packages.txt
+     	bootctl install
 fi
 fi
