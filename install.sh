@@ -49,6 +49,14 @@ else
      	echo "" > /mnt/boot/loader/loader.conf
       	echo "timeout 3" >> /mnt/boot/loader/loader.conf
    	echo "default arch.conf" >> /mnt/boot/loader/loader.conf
+    	echo "DONE!"
+     	echo "Enabling Display Manager"
+      	arch-chroot /mnt systemctl enable gdm
+       	echo "DONE!"
+	echo "Enabling Network Manager"
+ 	arch-chroot /mnt systemctl enable NetworkManager
+  	echo "DONE"
+   	echo "INSTALLATION COMPLETED! YOU CAN NOW SAFELY REBOOT YOUR COMPUTER!
 fi
 fi
 fi
