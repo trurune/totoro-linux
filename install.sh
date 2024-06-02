@@ -9,12 +9,12 @@ then
 	echo "use export BOOTTOTORO=/dev/XXXX"
 else
 	echo "Making Filesystems..."
-	mkfs.ext4 $ROOTTOTOTORO
+	mkfs.ext4 $ROOTTOTORO
  	mkfs.fat -F32 $BOOTTOTORO
   	echo "DONE!"
   	echo "Mounting Filesystems..."
-  	mount $ROOTTOTOTORO /mnt
-   	mount $BOOTTOTOTORO /mnt/boot --mkdir
+  	mount $ROOTTOTORO /mnt
+   	mount $BOOTTOTORO /mnt/boot --mkdir
     	echo "DONE!"
      	echo "Installing Base System..."
     	pacstrap -K /mnt linux linux-firmware base base-devel
@@ -25,6 +25,6 @@ else
 	echo "INSTALLING BOOTLOADER!"
      	arch-chroot /mnt bootctl install
       	echo "DONE!"
-	echo "CONFIGURING BOOTLOADER!
+	echo "CONFIGURING BOOTLOADER!"
 fi
 fi
