@@ -1,3 +1,4 @@
+echo "Installing Totoro Linux London 06.2024"
 if [ -z "$ROOTTOTORO" ]
 then
 	echo "You have not set your ROOTTOTORO env variable!"
