@@ -31,7 +31,7 @@ else
  	arch-chroot /mnt useradd $USER
   	arch-chroot /mnt passwd $USER < $PSSWD
    	arch-chroot /mnt mkdir /home/{$USER}/
-	arch-chroot /mnt chown +R {$USER}:{$USER} /home/{$USER}
+	arch-chroot /mnt chown +R $USER:$USER /home/$USER
    	echo "DONE!"
      	echo "Installing Extra Packages..."
      	wget https://raw.githubusercontent.com/nowcat123/toroto-linux/master/packages.txt -o /mnt/packages.txt
@@ -41,6 +41,13 @@ else
      	arch-chroot /mnt bootctl install
       	echo "DONE!"
 	echo "CONFIGURING BOOTLOADER!"
+ 	echo "title Totoro Linux London" >> /mnt/boot/loader/entries/arch.conf
+  	echo "linux /vmlinuz-linuz" >> /mnt/boot/loader/entries/arch.conf
+   	echo "initrd /initramfs-linux.img" >> /mnt/boot/loader/entries/arch.conf
+    	echo "options root=$ROOTTOTORO rw" >> /mnt/boot/loader/entries/arch.conf
+     	echo "" > /mnt/boot/loader/loader.conf
+      	echo "timeout 3" >> /mnt/boot/loader/loader.conf
+   	echo "default arch.conf" >> /mnt/boot/loader/loader.conf
 fi
 fi
 fi
