@@ -18,6 +18,7 @@ else
    	then
     	echo "You have not set your PSSWD env variable!"
 	echo "use export PSSWD=password"
+ 	else
 	echo "Making Filesystems..."
 	mkfs.ext4 $ROOTTOTORO
  	mkfs.fat -F32 $BOOTTOTORO
@@ -56,7 +57,7 @@ else
 	echo "Enabling Network Manager"
  	arch-chroot /mnt systemctl enable NetworkManager
   	echo "DONE"
-   	echo "INSTALLATION COMPLETED! YOU CAN NOW SAFELY REBOOT YOUR COMPUTER!
+   	echo "INSTALLATION COMPLETED! YOU CAN NOW SAFELY REBOOT YOUR COMPUTER!"
 fi
 fi
 fi
