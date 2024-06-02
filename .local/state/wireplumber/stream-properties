@@ -1,0 +1,4 @@
+[stream-properties]
+Audio/Sink:node.name:auto_null={"channelVolumes":[1.000000, 1.000000], "volume":1.000000, "mute":false, "channelMap":["FL", "FR"]}
+Output/Audio:application.name:speech-dispatcher-dummy={"mute":false, "volume":1.000000, "channelVolumes":[1.000000], "channelMap":["MONO"]}
+Output/Audio:media.role:Notification={"channelVolumes":[1.000000, 1.000000], "volume":1.000000, "mute":false, "channelMap":["FL", "FR"]}
