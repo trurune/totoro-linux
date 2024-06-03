@@ -1,7 +1,7 @@
 
 # Totoro Linux
 <img src="https://raw.githubusercontent.com/nowcat123/toroto-linux/master/toroto.png" height=200>
-<p style="color: red;">THIS IS EXPERMENTRAL! THIS PRODUCT COMES WITH NO WARRANTY, ANY DAMAGE DONE TO YOUR SYSTEM IS 100% YOUR RESPONSIBILITY</p>
+# THIS HAS NO WARRANTY, ANY DAMAGE TO YOUR SYSTEM IS YOUR  RESPONSIBILITY! THIS IS EXPERIMENTAL!
 Totoro Linux is an arch based distribution designed to be sleek and also easy to install. 
 # Installation Guide
 Step 1. Boot into an Arch Linux live environment from a USB or another medium. (You can obtain an ISO from here: https://archlinux.org/download/)\
@@ -16,7 +16,7 @@ Simply run  ```pacman -Sy wget``` to install wget, used to download the script f
 Step 5. Download scrpt\
 Run wget  ```https://raw.githubusercontent.com/nowcat123/toroto-linux/master/install.sh``` to download the script
 Step 6. Give the script desired permissions\
-Run ```chmod +x install.sh``` to give the script permission to execute
+Run ```chmod +x install.sh``` to give the script permission to execute\
 Step 7. Run the script\
 Run ```./install.sh``` to install Totoro Linux\
 Step 8. Reboot!
