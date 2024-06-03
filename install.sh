@@ -32,10 +32,6 @@ else
      	echo "MAKING USER"
  	arch-chroot /mnt useradd $USER
   	arch-chroot /mnt passwd $USER < $PSSWD
-   	arch-chroot /mnt mkdir /home/{$USER}/
-    	arch.chroot /mnt/home git clone https://github.com/nowcat123/toroto-linux.git
-     	mkdir /mnt/home/$USER
-     	mv /mnt/home/toroto-linux/* /mnt/home/$USER
 	arch-chroot /mnt chown +R $USER:$USER /home/$USER
    	echo "DONE!"
      	echo "Installing Extra Packages..."
@@ -49,7 +45,7 @@ else
 	genfstab /mnt > /mnt/etc/fstab
 	echo "CONFIGURING BOOTLOADER!"
  	echo "title Totoro Linux London" >> /mnt/boot/loader/entries/arch.conf
-  	echo "linux /vmlinuz-linuz" >> /mnt/boot/loader/entries/arch.conf
+  	echo "linux /vmlinuz-linux" >> /mnt/boot/loader/entries/arch.conf
    	echo "initrd /initramfs-linux.img" >> /mnt/boot/loader/entries/arch.conf
     	echo "options root=$ROOTTOTORO rw" >> /mnt/boot/loader/entries/arch.conf
      	echo "" > /mnt/boot/loader/loader.conf
