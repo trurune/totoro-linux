@@ -3,9 +3,12 @@
 <img src="https://raw.githubusercontent.com/nowcat123/toroto-linux/master/toroto.png" height=200>
 
 Totoro Linux is an arch based distribution designed to be sleek and also easy to install.
-THIS IS EXPERIMENTAL!
+
 # Installation Guide
-MAKE SURE YOU ARE INSTALLIGN TO A UEFI SYSTEM! TOTORO DOES NOT SUPPORT MBR!
+
+# THIS IS EXPERIMENTAL!
+
+# MAKE SURE YOU ARE INSTALLING TO A UEFI SYSTEM! TOTORO DOES NOT SUPPORT MBR!
 Step 1. Boot into an Arch Linux live environment from a USB or another medium. (You can obtain an ISO from here: https://archlinux.org/download/)\
 Step 2. Use cfdisk or another tool to format your disk, create a boot partition of about 1 gigabyte of storage, set it's type to an EFI System Partition. Make the rest of your device a root partition.\
 Step 3. Set your ENV Variables\
