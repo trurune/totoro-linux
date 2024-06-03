@@ -1,7 +1,7 @@
 
 # Totoro Linux
 <img src="https://raw.githubusercontent.com/nowcat123/toroto-linux/master/toroto.png" height=200>
-
+<p style="color: red;">THIS IS EXPERMENTRAL! THIS PRODUCT COMES WITH NO WARRANTY, ANY DAMAGE DONE TO YOUR SYSTEM IS 100% YOUR RESPONSIBLE</p>
 Totoro Linux is an arch based distribution designed to be sleek and also easy to install. 
 # Installation Guide
 Step 1. Boot into an Arch Linux live environment from a USB or another medium. (You can obtain an ISO from here: https://archlinux.org/download/)\
