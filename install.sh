@@ -53,6 +53,15 @@ else
       	echo "timeout 3" >> /mnt/boot/loader/loader.conf
    	echo "default arch.conf" >> /mnt/boot/loader/loader.conf
     	echo "DONE!"
+     	echo "BOOTLOADER CHECK!"
+      	bootctl list
+      	if [ -f /mnt/boot/loader/entries/arch.conf
+       	echo "BOOTLOADER GOOD!"
+	else
+ 	echo "BAD BOOTLOADER! ABORTING! Did you not set the boot partitions to be an EFI System Partition?"
+  	echo "RERUN THE SCRIPT WITH THE BOOT PARTITON SET TO AN EFI SYSTEM PARTITION!"
+  	exit
+  	fi
      	echo "Enabling Display Manager"
       	arch-chroot /mnt systemctl enable gdm
        	echo "DONE!"
@@ -60,6 +69,7 @@ else
  	arch-chroot /mnt systemctl enable NetworkManager
   	echo "DONE"
    	echo "INSTALLATION COMPLETED! YOU CAN NOW SAFELY REBOOT YOUR COMPUTER!"
+    	
 fi
 fi
 fi
