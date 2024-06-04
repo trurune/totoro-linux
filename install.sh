@@ -5,9 +5,6 @@ echo "What is your boot partition (/dev/XXXX)?"
 read BOOTTOTORO
 echo "What do you want your username to be?"
 read USER
-echo "What do you want your passwod to be?"
-read PSSWD
-echo 
 if [ -z "$ROOTTOTORO" ]
 then
 	echo "You have not set your ROOTTOTORO!"
@@ -22,10 +19,7 @@ else
  	then
   	echo "You have not set your USERNAME!"
  	else
-  	if [ -z "$PSSWD" ]
-   	then
-    	echo "You have not set your PSSWD!"
- 	else
+  	
 	echo "Making Filesystems..."
 	mkfs.ext4 $ROOTTOTORO
  	mkfs.fat -F32 $BOOTTOTORO
@@ -79,7 +73,7 @@ else
   	echo "DONE"
    	echo "INSTALLATION COMPLETED! YOU CAN NOW SAFELY REBOOT YOUR COMPUTER!"
     	
-fi
+
 fi
 fi
 fi
