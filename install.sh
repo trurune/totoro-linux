@@ -1,23 +1,30 @@
 echo "Installing Totoro Linux London 06.2024"
+echo "What is your root partition (/dev/XXXX)?"
+read ROOTTOTORO
+echo "What is your boot partition (/dev/XXXX)?"
+read BOOTTOTORO
+echo "What do you want your username to be?"
+read USER
+echo "What do you want your passwod to be?"
+read PSSWD
+echo 
 if [ -z "$ROOTTOTORO" ]
 then
-	echo "You have not set your ROOTTOTORO env variable!"
-	echo "use export ROOTTOTORO=/dev/XXXX"
+	echo "You have not set your ROOTTOTORO!"
+
 else
 if [ -z "$BOOTTOTORO" ]
 then
-	echo "You have not set your BOOTTOTORO env variable!"
-	echo "use export BOOTTOTORO=/dev/XXXX"
+	echo "You have not set your BOOTTOTORO!"
+
 else	
 	if [ -z "$USER" ]
  	then
-  	echo "You have not set your USERNAME env variable!"
-	echo "use export USER=username"
+  	echo "You have not set your USERNAME!"
  	else
   	if [ -z "$PSSWD" ]
    	then
-    	echo "You have not set your PSSWD env variable!"
-	echo "use export PSSWD=password"
+    	echo "You have not set your PSSWD!"
  	else
 	echo "Making Filesystems..."
 	mkfs.ext4 $ROOTTOTORO
@@ -33,6 +40,8 @@ else
  	arch-chroot /mnt useradd $USER
   	arch-chroot /mnt passwd $USER < $PSSWD
 	arch-chroot /mnt chown +R $USER:$USER /home/$USER
+ 	arch-chroot /mnt usermod -a -G alex wheel
+  	wget https://raw.githubusercontent.com/nowcat123/toroto-linux/master/sudoers -o /mnt/etc/sudoers
    	echo "DONE!"
     	
      	echo "Installing Extra Packages..."
