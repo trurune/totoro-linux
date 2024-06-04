@@ -64,7 +64,7 @@ else
     	echo "DONE!"
      	echo "BOOTLOADER CHECK!"
       	bootctl list
-      	if [ -f /mnt/boot/loader/entries/arch.conf
+      	if [ -f /mnt/boot/loader/entries/arch.conf ]
        	echo "BOOTLOADER GOOD!"
 	else
  	echo "BAD BOOTLOADER! ABORTING! Did you not set the boot partitions to be an EFI System Partition?"
