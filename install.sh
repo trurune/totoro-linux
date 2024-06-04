@@ -34,6 +34,7 @@ else
   	arch-chroot /mnt passwd $USER < $PSSWD
 	arch-chroot /mnt chown +R $USER:$USER /home/$USER
    	echo "DONE!"
+    	
      	echo "Installing Extra Packages..."
      	wget https://raw.githubusercontent.com/nowcat123/toroto-linux/master/packages.txt -o /mnt/packages.txt
       	arch-chroot /mnt pacman -S - < packages.txt
