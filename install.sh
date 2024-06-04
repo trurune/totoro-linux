@@ -1,4 +1,4 @@
-echo "Installing Totoro Linux London 06.2024"
+echo "Installing Toroto Linux London 06.2024"
 echo "What is your root partition (/dev/XXXX)?"
 read ROOTTOTORO
 echo "What is your boot partition (/dev/XXXX)?"
