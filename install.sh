@@ -34,6 +34,7 @@ else
  	arch-chroot /mnt useradd $USER
   	echo "Please set a password for the user!"
   	arch-chroot /mnt passwd $USER
+   	mkdir /mnt/home/$USER
 	arch-chroot /mnt chown -R $USER:$USER /home/$USER
  	arch-chroot /mnt usermod -a -G alex wheel
   	wget https://raw.githubusercontent.com/nowcat123/toroto-linux/master/sudoers -o /mnt/etc/sudoers
