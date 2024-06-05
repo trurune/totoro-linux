@@ -37,7 +37,8 @@ else
    	mkdir /mnt/home/$USER
 	arch-chroot /mnt chown -R $USER:$USER /home/$USER
  	arch-chroot /mnt usermod -a -G wheel alex
-  	wget https://raw.githubusercontent.com/nowcat123/toroto-linux/master/sudoers -o /mnt/etc/sudoers
+  	wget https://raw.githubusercontent.com/nowcat123/toroto-linux/master/sudoers
+   	cat sudoers > /mnt/etc/sudoers
    	echo "DONE!"
     	
      	echo "Installing Extra Packages..."
