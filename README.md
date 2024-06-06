@@ -20,7 +20,7 @@ PSSWD to your desired password\
 Step 4. Install prerequisites\
 Simply run  ```pacman -Sy wget``` to install wget, used to download the script from the internet.\
 Step 5. Download scrpt\
-Run wget  ```https://raw.githubusercontent.com/nowcat123/totoro-linux/master/install.sh``` to download the script \
+Run wget  ```https://raw.githubusercontent.com/trurune/totoro-linux/master/install.sh``` to download the script \
 Step 6. Give the script desired permissions\
 Run ```chmod +x install.sh``` to give the script permission to execute\
 Step 7. Run the script\
