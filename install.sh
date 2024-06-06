@@ -42,7 +42,9 @@ else
   	wget https://raw.githubusercontent.com/nowcat123/toroto-linux/master/sudoers
    	cat sudoers > /mnt/etc/sudoers
    	echo "DONE!"
-    	
+    	echo "INSTALLING THEMES!"
+	wget https://github.com/nowcat123/toroto-linux/archive/refs/tags/london-release-2.tar.gz
+ 	
      	echo "Installing Extra Packages..."
      	wget https://raw.githubusercontent.com/nowcat123/toroto-linux/master/packages.txt -o /mnt/packages.txt
       	arch-chroot /mnt pacman -S - < packages.txt
