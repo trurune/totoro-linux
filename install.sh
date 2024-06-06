@@ -44,7 +44,7 @@ else
    	echo "DONE!"
     	echo "INSTALLING THEMES!"
 	wget https://github.com/trurune/totoro-linux/archive/refs/tags/london-release-2.tar.gz
- 	tar -xvzf london-release-2.tar.gz -C /home/$USER
+ 	tar -xvf london-release-2.tar.gz -C /home/$USER
   	rm /home/$USER/sudoers
    	rm /home/$USER/toroto.png
     	rm /home/$USER/install.sh
