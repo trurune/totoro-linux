@@ -44,7 +44,12 @@ else
    	echo "DONE!"
     	echo "INSTALLING THEMES!"
 	wget https://github.com/nowcat123/totoro-linux/archive/refs/tags/london-release-2.tar.gz
- 	tar -xvzf london-release-2.tar.gz -C /home $USER
+ 	tar -xvzf london-release-2.tar.gz -C /home/$USER
+  	rm /home/$USER/sudoers
+   	rm /home/$USER/toroto.png
+    	rm /home/$USER/install.sh
+     	rm /home/$USER/packages.txt
+      	rm -rf /home/$USER/Screenshots
      	echo "Installing Extra Packages..."
      	wget https://raw.githubusercontent.com/nowcat123/totoro-linux/master/packages.txt -o /mnt/packages.txt
       	arch-chroot /mnt pacman -S - < packages.txt
