@@ -39,11 +39,11 @@ else
    	mkdir /mnt/home/$USER
 	arch-chroot /mnt chown -R $USER:$USER /home/$USER
  	arch-chroot /mnt usermod -a -G wheel alex
-  	wget https://raw.githubusercontent.com/nowcat123/totoro-linux/master/sudoers
+  	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/sudoers
    	cat sudoers > /mnt/etc/sudoers
    	echo "DONE!"
     	echo "INSTALLING THEMES!"
-	wget https://github.com/nowcat123/totoro-linux/archive/refs/tags/london-release-2.tar.gz
+	wget https://github.com/trurune/totoro-linux/archive/refs/tags/london-release-2.tar.gz
  	tar -xvzf london-release-2.tar.gz -C /home/$USER
   	rm /home/$USER/sudoers
    	rm /home/$USER/toroto.png
@@ -51,7 +51,7 @@ else
      	rm /home/$USER/packages.txt
       	rm -rf /home/$USER/Screenshots
      	echo "Installing Extra Packages..."
-     	wget https://raw.githubusercontent.com/nowcat123/totoro-linux/master/packages.txt -o /mnt/packages.txt
+     	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/packages.txt -o /mnt/packages.txt
       	arch-chroot /mnt pacman -S - < packages.txt
        	echo "DONE!"
 	echo "INSTALLING BOOTLOADER!"
