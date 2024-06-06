@@ -17,9 +17,11 @@ then
 else	
 	if [ -z "$USER" ]
  	then
-  	echo "You have not set your USERNAME!"
+  	echo "You have not set your USERNAME! (password will be set later)"
  	else
-  	
+  	echo "Are you sure you want to install Totoro Linux to $ROOTTOTORO? This is irreversible! (Type Y and press enter to confirm, press enter to cancel)"
+   	read CONFIRM
+   	if [ $CONFIRM == "Y" ]
 	echo "Making Filesystems..."
 	mkfs.ext4 $ROOTTOTORO
  	mkfs.fat -F32 $BOOTTOTORO
@@ -68,7 +70,9 @@ else
  	arch-chroot /mnt systemctl enable NetworkManager
   	echo "DONE"
    	echo "INSTALLATION COMPLETED! YOU CAN NOW SAFELY REBOOT YOUR COMPUTER!"
-    	
+    	else
+     	echo "Cancelled!"
+      	fi
 
 fi
 fi
