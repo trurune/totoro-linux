@@ -47,13 +47,6 @@ else
      	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/packages.txt -o /mnt/packages.txt
       	arch-chroot /mnt pacman -S - < packages.txt
        	echo "DONE!"
-	echo "INSTALLING THEMES!"
-	arch-chroot /mnt wget https://extensions.gnome.org/extension-data/user-themegnome-shell-extensions.gcampax.github.com.v58.shell-extension.zip
- 	arch-chroot /mnt gnome-extensions install user-themegnome-shell-extensions.gcampax.github.com.v58.shell-extension.zip
-  	arch-chroot /mnt https://extensions.gnome.org/extension-data/dash-to-dockmicxgx.gmail.com.v92.shell-extension.zip
- 	arch-chroot /mnt gnome-extensions install dash-to-dockmicxgx.gmail.com.v92.shell-extension.zip
-  	arch-chroot /mnt wget https://extensions.gnome.org/extension-data/blur-my-shellaunetx.v62.shell-extension.zip
- 	arch-chroot /mnt gnome-extensions install blur-my-shellaunetx.v62.shell-extension.zip
 	echo "INSTALLING BOOTLOADER!"
      	arch-chroot /mnt bootctl install
       	echo "DONE!"
