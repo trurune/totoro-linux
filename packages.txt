@@ -718,3 +718,4 @@ zlib
 zstd
 zvbi
 zxing-cpp
+wget
