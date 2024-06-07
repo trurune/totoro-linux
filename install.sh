@@ -1,4 +1,5 @@
-echo "Installing Totoro Linux London 06.2024"
+echo "Installing Totoro Linux Toronto 06.2024"
+lsblk
 echo "What is your root partition (/dev/XXXX)?"
 read ROOTTOTORO
 echo "What is your boot partition (/dev/XXXX)?"
@@ -22,19 +23,19 @@ else
   	echo "Are you sure you want to install Totoro Linux to $ROOTTOTORO? This is irreversible! (Type Y and press enter to confirm, press enter to cancel)"
    	read CONFIRM
    	if [ $CONFIRM == "Y" ]
-	echo "Making Filesystems..."
+	echo "MAKING FILESYSTEMS!"
 	mkfs.ext4 $ROOTTOTORO
  	mkfs.fat -F32 $BOOTTOTORO
   	echo "DONE!"
-  	echo "Mounting Filesystems..."
+  	echo "MOUNTING FILESYSTEMS!"
   	mount $ROOTTOTORO /mnt
    	mount $BOOTTOTORO /mnt/boot --mkdir
     	echo "DONE!"
-     	echo "Installing Base System..."
+     	echo "INSTALLNG BASE SYSTEM!"
     	pacstrap -K /mnt linux linux-firmware base base-devel
-     	echo "MAKING USER"
+     	echo "MAKING USER!"
  	arch-chroot /mnt useradd $USER
-  	echo "Please set a password for the user!"
+  	echo "PLEASE SET A PASSWORD FOR THE USER!"
   	arch-chroot /mnt passwd $USER
    	mkdir /mnt/home/$USER
 	arch-chroot /mnt chown -R $USER:$USER /home/$USER
@@ -42,8 +43,7 @@ else
   	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/sudoers
    	cat sudoers > /mnt/etc/sudoers
    	echo "DONE!"
-    	
-     	echo "Installing Extra Packages..."
+     	echo "INSTALLING EXTRA PACKAGES!"
      	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/packages.txt -o /mnt/packages.txt
       	arch-chroot /mnt pacman -S - < packages.txt
        	echo "DONE!"
@@ -63,10 +63,9 @@ else
     	echo "DONE!"
      	echo "BOOTLOADER CHECK!"
       	arch-chroot /mnt bootctl list
-     	echo "Enabling Display Manager"
-      	arch-chroot /mnt systemctl enable gdm
        	echo "DONE!"
-	echo "Enabling Network Manager"
+     	echo "ENABLING DAEMONS!"
+      	arch-chroot /mnt systemctl enable gdm
  	arch-chroot /mnt systemctl enable NetworkManager
   	echo "DONE"
    	echo "INSTALLATION COMPLETED! YOU CAN NOW SAFELY REBOOT YOUR COMPUTER!"
