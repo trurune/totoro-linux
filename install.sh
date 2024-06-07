@@ -47,6 +47,10 @@ else
    	echo "DONE!"
      	echo "INSTALLING EXTRA PACKAGES!"
      	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/packages.txt -o /mnt/packages.txt
+      	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/issue
+       	mv issue /mnt/etc/issue
+	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
+ 	mv os-release /mnt/etc/os-release
       	arch-chroot /mnt pacman -S - < packages.txt
        	echo "DONE!"
 	echo "INSTALLING BOOTLOADER!"
