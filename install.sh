@@ -93,7 +93,7 @@ else
  	if [ $VER == "xfce" ]
 	then
      	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/xfce-packages.txt
-      	mv gnome-packages.txt /mnt/packages.txt
+      	mv xfce-packages.txt /mnt/packages.txt
       	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/issue
        	mv issue /mnt/etc/issue
 	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
@@ -102,7 +102,7 @@ else
        	echo "DONE!"
 	fi
  	echo "INSTALLING BOOTLOADER!"
-     	arch-chroot /mnt bootctl installlibxft xorg-server xorg-xinit terminus-font
+     	arch-chroot /mnt bootctl install
       	echo "DONE!"
       
        	echo "GENERATING FSTAB"
