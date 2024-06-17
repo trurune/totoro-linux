@@ -7,8 +7,12 @@ echo "What is your boot partition (/dev/XXXX)?"
 read BOOTTOTORO
 echo "What do you want your username to be?"
 read USER
-echo "Please pick a Totoro Version (gnome, suckless)"
+echo "Please pick a Totoro Version (gnome, suckless, xfce)"
 read VER
+if [ -z VER ]
+echo "You have not set your VER!"
+then
+else
 if [ -z "$ROOTTOTORO" ]
 then
 	echo "You have not set your ROOTTOTORO!"
@@ -70,7 +74,7 @@ else
 	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
  	mv os-release /mnt/etc/os-release
       	arch-chroot /mnt pacman -S - < /mnt/packages.txt
-       	echo "Installing suckless requires some packages to be compiled, please be aware that this may take a while depending on your machine's power"
+       	echo "Installing suckless requires some packagelibxft xorg-server xorg-xinit terminus-fonts to be compiled, please be aware that this may take a while depending on your machine's power"
 	arch-chroot /mnt git clone https://git.suckless.org/dwm
  	arch-chroot /mnt make -C dwm
   	arch-chroot /mnt sudo make install -C dwm
@@ -84,10 +88,20 @@ else
   	arch-chroot /mnt sudo make install -C dmenu
    	rm -rf dmenu
  echo "DONE!"
-	
+	fi
+ 	if [ $VER == "xfce" ]
+	then
+     	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/xfce-packages.txt
+      	mv gnome-packages.txt /mnt/packages.txt
+      	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/issue
+       	mv issue /mnt/etc/issue
+	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
+ 	mv os-release /mnt/etc/os-release
+      	arch-chroot /mnt pacman -S - < /mnt/packages.txt
+       	echo "DONE!"
 	fi
  	echo "INSTALLING BOOTLOADER!"
-     	arch-chroot /mnt bootctl install
+     	arch-chroot /mnt bootctl installlibxft xorg-server xorg-xinit terminus-font
       	echo "DONE!"
       
        	echo "GENERATING FSTAB"
@@ -105,14 +119,26 @@ else
       	arch-chroot /mnt bootctl list
        	echo "DONE!"
      	echo "ENABLING DAEMONS!"
+      	if [ $VER == "gnome" ]
+        then
       	arch-chroot /mnt systemctl enable gdm
+       	fi
+	if [ $VER == "xfce" ]
+ 	then
+  	arch-chroot /mnt systemctl enable sddm
+   	fi
  	arch-chroot /mnt systemctl enable NetworkManager
   	echo "DONE"
    	echo "INSTALLATION COMPLETED! YOU CAN NOW SAFELY REBOOT YOUR COMPUTER!"
+    	if [ $VER == "suckless" ]
+     	then
+      	echo "You are using the suckless version, there is therefore no DM included, simply run startx after logging to enter your desktop :3"
+       	fi
     	else
      	echo "Cancelled!"
       	fi
 
+fi
 fi
 fi
 fi
