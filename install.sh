@@ -72,8 +72,8 @@ else
       	arch-chroot /mnt pacman -S - < /mnt/packages.txt
        	echo "Installing suckless requires some packages to be compiled, please be aware that this may take a while depending on your machine's power"
 	arch-chroot /mnt git clone https://git.suckless.org/dwm
- 	arch-chroot /mnt make dwm
-  	arch-chroot /mnt sudo make install dwm
+ 	arch-chroot /mnt make -C dwm
+  	arch-chroot /mnt sudo make install -C dwm
 	rm -rf dwm
 	echo "DONE!"
 	
