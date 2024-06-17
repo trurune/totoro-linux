@@ -75,7 +75,15 @@ else
  	arch-chroot /mnt make -C dwm
   	arch-chroot /mnt sudo make install -C dwm
 	rm -rf dwm
-	echo "DONE!"
+	arch-chroot /mnt git clone https://git.suckless.org/st
+ 	arch-chroot /mnt make -C st
+  	arch-chroot /mnt sudo make install -C st
+   	rm -rf st
+    	arch-chroot /mnt git clone https://git.suckless.org/dmenu
+ 	arch-chroot /mnt make -C dmenu
+  	arch-chroot /mnt sudo make install -C dmenu
+   	rm -rf dmenu
+ echo "DONE!"
 	
 	fi
  	echo "INSTALLING BOOTLOADER!"
