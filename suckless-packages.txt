@@ -1,2 +1,4 @@
 xorg
 xorg-xinit
+git
+wget
