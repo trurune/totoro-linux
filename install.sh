@@ -10,8 +10,9 @@ read USER
 echo "Please pick a Totoro Version (gnome, suckless, xfce)"
 read VER
 if [ -z VER ]
-echo "You have not set your VER!"
 then
+echo "You have not set your VER!"
+
 else
 if [ -z "$ROOTTOTORO" ]
 then
