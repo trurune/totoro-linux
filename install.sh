@@ -73,7 +73,7 @@ else
        	mv issue /mnt/etc/issue
 	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
  	mv os-release /mnt/etc/os-release
-      	arch-chroot /mn	t pacman -S - < packages.txt
+      	arch-chroot /mnt pacman -S - < packages.txt
        	echo "DONE!"
 	fi
  	echo "INSTALLING BOOTLOADER!"
