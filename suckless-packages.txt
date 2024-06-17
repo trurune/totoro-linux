@@ -3,3 +3,6 @@ xorg-xinit
 git
 wget
 networkmanager
+libxft
+xorg-server
+terminus-font
