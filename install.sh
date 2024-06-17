@@ -1,5 +1,5 @@
 clear
-echo "Installing Totoro Linux Toronto 06.2024"
+echo "Installing Totoro Linux Osaka 06.2024"
 lsblk
 echo "What is your root partition (/dev/XXXX)?"
 read ROOTTOTORO
