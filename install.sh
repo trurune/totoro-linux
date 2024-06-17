@@ -22,11 +22,7 @@ else
 	if [ -z "$USER" ]
  	then
   	echo "You have not set your USERNAME! (password will be set later)"
-   	if [ -z "$VER" ]
-    	then
-     	echo "You have not set your VERSION!"
-      	else
- 	else
+   	else
   	echo "Are you sure you want to install Totoro Linux to $ROOTTOTORO? This is irreversible! (Type Y and press enter to confirm, press enter to cancel)"
    	read CONFIRM
    	if [ $CONFIRM == "Y" ]
@@ -54,7 +50,8 @@ else
      	echo "INSTALLING EXTRA PACKAGES!"
       	if [ $VER == "gnome" ]
 	then
-     	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/gnome-packages.txt -o /mnt/packages.txt
+     	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/gnome-packages.txt
+      	mv gnome-packages.txt /mnt/packages.txt
       	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/issue
        	mv issue /mnt/etc/issue
 	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
@@ -62,7 +59,7 @@ else
       	arch-chroot /mnt pacman -S - < packages.txt
        	echo "DONE!"
 	fi
- 	if [ $VER == "suckless"]
+ 	if [ $VER == "suckless" ]
   	then
    	echo "Installing suckless requires some packages to be compiled, please be aware that this may take a while depending on your machine's power"
 	arch-chroot /mnt git clone https://git.suckless.org/dwm
@@ -70,7 +67,8 @@ else
   	arch-chroot /mnt sudo make install dwm
 	rm -rf dwm
  	echo "exec dwm" >> /mnt/home/$USER/.xinitrc
-   	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/gnome-packages.txt -o /mnt/packages.txt
+   	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/suckless-packages.txt
+    	mv suckless-packages.txt /mnt/packages.txt
       	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/issue
        	mv issue /mnt/etc/issue
 	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
@@ -105,7 +103,5 @@ else
      	echo "Cancelled!"
       	fi
 
-fi
-fi
 fi
 fi
