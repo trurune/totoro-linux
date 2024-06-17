@@ -61,11 +61,7 @@ else
 	fi
  	if [ $VER == "suckless" ]
   	then
-   	echo "Installing suckless requires some packages to be compiled, please be aware that this may take a while depending on your machine's power"
-	arch-chroot /mnt git clone https://git.suckless.org/dwm
- 	arch-chroot /mnt make dwm
-  	arch-chroot /mnt sudo make install dwm
-	rm -rf dwm
+   	
  	echo "exec dwm" >> /mnt/home/$USER/.xinitrc
    	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/suckless-packages.txt
     	mv suckless-packages.txt /mnt/packages.txt
@@ -74,7 +70,13 @@ else
 	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
  	mv os-release /mnt/etc/os-release
       	arch-chroot /mnt pacman -S - < /mnt/packages.txt
-       	echo "DONE!"
+       	echo "Installing suckless requires some packages to be compiled, please be aware that this may take a while depending on your machine's power"
+	arch-chroot /mnt git clone https://git.suckless.org/dwm
+ 	arch-chroot /mnt make dwm
+  	arch-chroot /mnt sudo make install dwm
+	rm -rf dwm
+	echo "DONE!"
+	
 	fi
  	echo "INSTALLING BOOTLOADER!"
      	arch-chroot /mnt bootctl install
