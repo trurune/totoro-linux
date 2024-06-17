@@ -1,0 +1,5 @@
+sddm
+xfce4
+xorg
+firefox
+kitty
