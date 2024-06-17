@@ -7,6 +7,8 @@ echo "What is your boot partition (/dev/XXXX)?"
 read BOOTTOTORO
 echo "What do you want your username to be?"
 read USER
+echo "Please pick a Totoro Version (gnome, suckless)"
+read VER
 if [ -z "$ROOTTOTORO" ]
 then
 	echo "You have not set your ROOTTOTORO!"
@@ -20,6 +22,10 @@ else
 	if [ -z "$USER" ]
  	then
   	echo "You have not set your USERNAME! (password will be set later)"
+   	if [ -z "$VER" ]
+    	then
+     	echo "You have not set your VERSION!"
+      	else
  	else
   	echo "Are you sure you want to install Totoro Linux to $ROOTTOTORO? This is irreversible! (Type Y and press enter to confirm, press enter to cancel)"
    	read CONFIRM
@@ -46,16 +52,36 @@ else
    	cat sudoers > /mnt/etc/sudoers
    	echo "DONE!"
      	echo "INSTALLING EXTRA PACKAGES!"
-     	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/packages.txt -o /mnt/packages.txt
+      	if [ $VER == "gnome" ]
+	then
+     	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/gnome-packages.txt -o /mnt/packages.txt
       	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/issue
        	mv issue /mnt/etc/issue
 	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
  	mv os-release /mnt/etc/os-release
       	arch-chroot /mnt pacman -S - < packages.txt
        	echo "DONE!"
-	echo "INSTALLING BOOTLOADER!"
+	fi
+ 	if [ $VER == "suckless"]
+  	then
+   	echo "Installing suckless requires some packages to be compiled, please be aware that this may take a while depending on your machine's power"
+	arch-chroot /mnt git clone https://git.suckless.org/dwm
+ 	arch-chroot /mnt make dwm
+  	arch-chroot /mnt sudo make install dwm
+	rm -rf dwm
+ 	echo "exec dwm" >> /mnt/home/$USER/.xinitrc
+   	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/gnome-packages.txt -o /mnt/packages.txt
+      	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/issue
+       	mv issue /mnt/etc/issue
+	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
+ 	mv os-release /mnt/etc/os-release
+      	arch-chroot /mn	t pacman -S - < packages.txt
+       	echo "DONE!"
+	fi
+ 	echo "INSTALLING BOOTLOADER!"
      	arch-chroot /mnt bootctl install
       	echo "DONE!"
+      
        	echo "GENERATING FSTAB"
 	genfstab /mnt > /mnt/etc/fstab
 	echo "CONFIGURING BOOTLOADER!"
@@ -82,4 +108,4 @@ else
 fi
 fi
 fi
-
+fi
