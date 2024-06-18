@@ -110,7 +110,7 @@ else
        	echo "GENERATING FSTAB"
 	genfstab /mnt > /mnt/etc/fstab
 	echo "CONFIGURING BOOTLOADER!"
- 	echo "title Totoro Linux Toronto" >> /mnt/boot/loader/entries/arch.conf
+ 	echo "title Totoro Linux Osaka" >> /mnt/boot/loader/entries/arch.conf
   	echo "linux /vmlinuz-linux" >> /mnt/boot/loader/entries/arch.conf
    	echo "initrd /initramfs-linux.img" >> /mnt/boot/loader/entries/arch.conf
     	echo "options root=$ROOTTOTORO rw" >> /mnt/boot/loader/entries/arch.conf
