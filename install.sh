@@ -75,8 +75,10 @@ else
 	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
  	mv os-release /mnt/etc/os-release
       	arch-chroot /mnt pacman -S - < /mnt/packages.txt
-       	echo "Installing suckless requires some packagelibxft xorg-server xorg-xinit terminus-fonts to be compiled, please be aware that this may take a while depending on your machine's power"
+       	echo "Installing suckless requires some packages to be compiled, please be aware that this may take a while depending on your machine's power"
 	arch-chroot /mnt git clone https://git.suckless.org/dwm
+ 	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/config.h
+  	mv config.h /mnt/dwm/config.h
  	arch-chroot /mnt make -C dwm
   	arch-chroot /mnt sudo make install -C dwm
 	rm -rf dwm
