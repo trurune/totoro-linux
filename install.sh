@@ -131,6 +131,7 @@ else
   	arch-chroot /mnt systemctl enable sddm
    	fi
  	arch-chroot /mnt systemctl enable NetworkManager
+  	echo "totoro-linux" > /mnt/etc/hostname
   	echo "DONE"
    	echo "INSTALLATION COMPLETED! YOU CAN NOW SAFELY REBOOT YOUR COMPUTER!"
     	if [ $VER == "suckless" ]
