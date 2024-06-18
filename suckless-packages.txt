@@ -7,3 +7,4 @@ libxft
 xorg-server
 terminus-font
 rofi
+firefox
