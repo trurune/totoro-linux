@@ -6,3 +6,4 @@ networkmanager
 libxft
 xorg-server
 terminus-font
+rofi
