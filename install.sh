@@ -3,21 +3,6 @@ echo "Installing Totoro Linux Osaka 06.2024"
 lsblk
 echo "What is your disk (/dev/XXX)?"
 read DISK
-(
-echo z 
-echo g 
-echo n
-echo 1 
-echo t 
-echo  
-echo +100M 
-
-echo n 
-echo 2 
-echo   
-echo   
-echo w 
-) | sudo fdisk $DISK
 
 export ROOTTOTORO=${DISK}2
 export BOOTTOTORO=${DISK}1
@@ -48,6 +33,21 @@ else
    	read CONFIRM
    	if [ $CONFIRM == "Y" ]
     then
+    	dd if=/dev/zero of=$DISK bs=512M status=progress count=1
+	(
+	echo g
+ 	echo n
+  	echo 1
+   	echo  
+   	echo +512M
+    	echo t
+     	echo 1
+      	echo n
+       	echo 2
+	echo  
+ 	echo  
+  	echo w
+) | sudo fdisk $DISK
 	echo "MAKING FILESYSTEMS!"
 	mkfs.ext4 $ROOTTOTORO
  	mkfs.fat -F32 $BOOTTOTORO
