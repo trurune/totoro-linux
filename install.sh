@@ -18,7 +18,7 @@ echo 2
 echo   
 echo   
 echo w 
-) | sudo fdisk
+) | sudo fdisk $DISK
 
 export ROOTTOTORO=${DISK}2
 export BOOTTOTORO=${DISK}1
