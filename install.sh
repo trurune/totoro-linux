@@ -1,10 +1,27 @@
 clear
 echo "Installing Totoro Linux Osaka 06.2024"
 lsblk
-echo "What is your root partition (/dev/XXXX)?"
-read ROOTTOTORO
-echo "What is your boot partition (/dev/XXXX)?"
-read BOOTTOTORO
+echo "What is your disk (/dev/XXX)?"
+read DISK
+(
+echo z 
+echo g 
+echo n 
+echo p 
+echo 1 
+echo   
+echo +100M 
+echo t 
+echo n 
+echo p 
+echo 2 
+echo   
+echo   
+echo w 
+) | sudo fdisk
+
+export ROOTTOTORO=${DISK}2
+export BOOTTOTORO=${DISK}1
 echo "What do you want your username to be?"
 read USER
 echo "Please pick a Totoro Version (gnome, suckless, xfce)"
