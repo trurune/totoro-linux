@@ -1,0 +1,6 @@
+gdm
+gnome
+gnome-extras
+kitty
+firefox
+networkmanager
