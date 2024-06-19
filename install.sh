@@ -3,22 +3,7 @@ echo "Installing Totoro Linux Osaka 06.2024"
 lsblk
 echo "What is your disk (/dev/XXX)?"
 read DISK
-(
-echo z 
-echo g 
-echo n 
-echo p 
-echo 1 
-echo   
-echo +100M 
-echo t 
-echo n 
-echo p 
-echo 2 
-echo   
-echo   
-echo w 
-) | sudo fdisk $DISK
+
 
 export ROOTTOTORO=${DISK}2
 export BOOTTOTORO=${DISK}1
@@ -49,6 +34,23 @@ else
    	read CONFIRM
    	if [ $CONFIRM == "Y" ]
     then
+    	echo "PARTITIONING DISKS"
+     	(
+echo z 
+echo g 
+echo n 
+echo p 
+echo 1 
+echo   
+echo +100M 
+echo t 
+echo n 
+echo p 
+echo 2 
+echo   
+echo   
+echo w 
+) | sudo fdisk $DISK
 	echo "MAKING FILESYSTEMS!"
 	mkfs.ext4 $ROOTTOTORO
  	mkfs.fat -F32 $BOOTTOTORO
