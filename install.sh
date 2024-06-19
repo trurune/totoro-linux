@@ -6,14 +6,13 @@ read DISK
 (
 echo z 
 echo g 
-echo n 
-echo p 
+echo n
 echo 1 
-echo   
+
+echo  
 echo +100M 
 echo t 
 echo n 
-echo p 
 echo 2 
 echo   
 echo   
