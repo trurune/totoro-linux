@@ -8,10 +8,10 @@ echo z
 echo g 
 echo n
 echo 1 
-
+echo t 
 echo  
 echo +100M 
-echo t 
+
 echo n 
 echo 2 
 echo   
