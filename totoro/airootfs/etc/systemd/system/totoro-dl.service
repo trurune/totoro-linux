@@ -1,0 +1,8 @@
+[Unit]
+Description=Downloads the totoro script from the internet and then runs it.
+
+[Service]
+ExecStart=/root/dl.sh
+
+[Install]
+WantedBy-multi-user.target
