@@ -3,9 +3,13 @@ echo "Installing Totoro Linux Osaka 06.2024"
 lsblk
 echo "What is your disk (/dev/XXX)?"
 read DISK
-
+if [[ $string =~ "nvme" ]]; then
+export ROOTTOTORO=${DISK}p2
+export BOOTTOTORO=${DISK}p1
+else
 export ROOTTOTORO=${DISK}2
 export BOOTTOTORO=${DISK}1
+fi
 echo "What do you want your username to be?"
 read USER
 echo "Please pick a Totoro Version (gnome, suckless, xfce)"
