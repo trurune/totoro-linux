@@ -115,6 +115,7 @@ else
 	if [ $VER == "blank" ]
 	then
 	arch-chroot /mnt pacman -S networkmanager --noconfirm
+	fi
  	if [ $VER == "xfce" ]
 	then
      	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/xfce-packages.txt
@@ -127,7 +128,7 @@ else
        	echo "DONE!"
 	fi
  	echo "EFI STUB SETUP"
-		efibootmgr --create --disk $ROOTTOTORO --part 1 --label "Totoro Linux :3" --loader /vmlinuz-linux --unicode 'root=$ROOTTOTORO rw initrd=\initramfs-linux.img'
+		efibootmgr --create --disk $ROOTTOTORO --part 1 --label "Totoro Linux :3" --loader /vmlinuz-linux --unicode 'root='$ROOTTOTORO' rw initrd=\initramfs-linux.img'
 		
      	echo "DONE!"
      	echo "ENABLING DAEMONS!"
