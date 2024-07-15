@@ -12,7 +12,7 @@ export BOOTTOTORO=${DISK}1
 fi
 echo "What do you want your username to be?"
 read USER
-echo "Please pick a Totoro Version (gnome, suckless, xfce)"
+echo "Please pick a Totoro Version (gnome, suckless, xfce, blank)"
 read VER
 if [ -z VER ]
 then
@@ -81,7 +81,7 @@ else
        	mv issue /mnt/etc/issue
 	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
  	mv os-release /mnt/etc/os-release
-      	arch-chroot /mnt pacman -S - < /mnt/packages.txt
+      	arch-chroot /mnt pacman -S - < /mnt/packages.txt --noconfirm
        	echo "DONE!"
 	fi
  	if [ $VER == "suckless" ]
@@ -94,7 +94,7 @@ else
        	mv issue /mnt/etc/issue
 	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
  	mv os-release /mnt/etc/os-release
-      	arch-chroot /mnt pacman -S - < /mnt/packages.txt
+      	arch-chroot /mnt pacman -S - < /mnt/packages.txt --noconfirm
        	echo "Installing suckless requires some packages to be compiled, please be aware that this may take a while depending on your machine's power"
 	arch-chroot /mnt git clone https://git.suckless.org/dwm
  	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/config.h
@@ -112,6 +112,9 @@ else
    	rm -rf dmenu
  echo "DONE!"
 	fi
+	if [ $VER == "blank" ]
+	then
+	arch-chroot /mnt pacman -S networkmanager --noconfirm
  	if [ $VER == "xfce" ]
 	then
      	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/xfce-packages.txt
@@ -120,27 +123,13 @@ else
        	mv issue /mnt/etc/issue
 	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
  	mv os-release /mnt/etc/os-release
-      	arch-chroot /mnt pacman -S - < /mnt/packages.txt
+      	arch-chroot /mnt pacman -S - < /mnt/packages.txt --noconfirm
        	echo "DONE!"
 	fi
  	echo "EFI STUB SETUP"
-     	arch-chroot /mnt bootctl install
-      	echo "DONE!"
-      
-       	echo "GENERATING FSTAB"
-	genfstab /mnt > /mnt/etc/fstab
-	echo "CONFIGURING BOOTLOADER!"
- 	echo "title Totoro Linux Osaka" >> /mnt/boot/loader/entries/arch.conf
-  	echo "linux /vmlinuz-linux" >> /mnt/boot/loader/entries/arch.conf
-   	echo "initrd /initramfs-linux.img" >> /mnt/boot/loader/entries/arch.conf
-    	echo "options root=$ROOTTOTORO rw" >> /mnt/boot/loader/entries/arch.conf
-     	echo "" > /mnt/boot/loader/loader.conf
-      	echo "timeout 3" >> /mnt/boot/loader/loader.conf
-   	echo "default arch.conf" >> /mnt/boot/loader/loader.conf
-    	echo "DONE!"
-     	echo "BOOTLOADER CHECK!"
-      	arch-chroot /mnt bootctl list
-       	echo "DONE!"
+		efibootmgr --create --disk $ROOTTOTORO --part 1 --label "Totoro Linux :3" --loader /vmlinuz-linux --unicode 'root=$ROOTTOTORO rw initrd=\initramfs-linux.img'
+		
+     	echo "DONE!"
      	echo "ENABLING DAEMONS!"
       	if [ $VER == "gnome" ]
         then
@@ -161,7 +150,6 @@ else
     	else
      	echo "Cancelled!"
       	fi
-
 fi
 fi
 fi
