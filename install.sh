@@ -123,7 +123,7 @@ else
       	arch-chroot /mnt pacman -S - < /mnt/packages.txt
        	echo "DONE!"
 	fi
- 	echo "INSTALLING BOOTLOADER!"
+ 	echo "EFI STUB SETUP"
      	arch-chroot /mnt bootctl install
       	echo "DONE!"
       
