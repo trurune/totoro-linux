@@ -125,17 +125,19 @@ else
 	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
  	mv os-release /mnt/etc/os-release
       	arch-chroot /mnt pacman -S - < /mnt/packages.txt --noconfirm
-       	echo "DONE!"
+     	echo "DONE!"
 	fi
  	echo "EFI STUB SETUP"
-		efibootmgr --create --disk $ROOTTOTORO --part 1 --label "Totoro Linux :3" --loader /vmlinuz-linux --unicode 'root='$ROOTTOTORO' rw initrd=\initramfs-linux.img'
-		
-     	echo "DONE!"
-     	echo "ENABLING DAEMONS!"
-      	if [ $VER == "gnome" ]
-        then
-      	arch-chroot /mnt systemctl enable gdm
-       	fi
+	efibootmgr --create --disk $ROOTTOTORO --part 1 --label "Totoro Linux :3" --loader /vmlinuz-linux --unicode 'root='$ROOTTOTORO' rw initrd=\initramfs-linux.img'	
+    echo "DONE!"
+    echo "GENERATING FSTAB"
+    genfstab /mnt >> /etc/fstab
+    echo "DONE"
+    echo "ENABLING DAEMONS!"
+    if [ $VER == "gnome" ]
+    then
+    arch-chroot /mnt systemctl enable gdm
+    fi
 	if [ $VER == "xfce" ]
  	then
   	arch-chroot /mnt systemctl enable sddm
