@@ -131,7 +131,7 @@ else
 	efibootmgr --create --disk $ROOTTOTORO --part 1 --label "Totoro Linux :3" --loader /vmlinuz-linux --unicode 'root='$ROOTTOTORO' rw initrd=\initramfs-linux.img'	
     echo "DONE!"
     echo "GENERATING FSTAB"
-    genfstab /mnt >> /etc/fstab
+    genfstab /mnt >> /mnt/etc/fstab
     echo "DONE"
     echo "ENABLING DAEMONS!"
     if [ $VER == "gnome" ]
