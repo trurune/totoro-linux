@@ -1,8 +1,8 @@
 clear
 echo "Installing Totoro Linux Osaka 06.2024"
 sleep 2
-lsblk
 clear
+lsblk
 echo "What is your disk (/dev/XXX)?"
 read DISK
 if [[ $string =~ "nvme" ]]; then
