@@ -1,6 +1,8 @@
 clear
 echo "Installing Totoro Linux Osaka 06.2024"
+sleep 2
 lsblk
+clear
 echo "What is your disk (/dev/XXX)?"
 read DISK
 if [[ $string =~ "nvme" ]]; then
@@ -10,10 +12,13 @@ else
 export ROOTTOTORO=${DISK}2
 export BOOTTOTORO=${DISK}1
 fi
+clear
 echo "What do you want your username to be?"
 read USER
+clear
 echo "Please pick a Totoro Version (gnome, suckless, xfce, blank)"
 read VER
+clear
 if [ -z VER ]
 then
 echo "You have not set your VER!"
@@ -37,6 +42,8 @@ else
    	read CONFIRM
    	if [ $CONFIRM == "Y" ]
     then
+    	clear
+    	echo "DESTROYING OLD GPT"
     	dd if=/dev/zero of=$DISK bs=512M status=progress count=1
 	(
 	echo g
@@ -52,19 +59,23 @@ else
  	echo  
   	echo w
 ) | sudo fdisk $DISK
-	echo "MAKING FILESYSTEMS!"
+	clear
+ 	echo "MAKING FILESYSTEMS!"
 	mkfs.ext4 $ROOTTOTORO
  	mkfs.fat -F32 $BOOTTOTORO
   	echo "DONE!"
-  	echo "MOUNTING FILESYSTEMS!"
+  	clear
+   	echo "MOUNTING FILESYSTEMS!"
   	mount $ROOTTOTORO /mnt
    	mount $BOOTTOTORO /mnt/boot --mkdir
     	echo "DONE!"
-     	echo "INSTALLNG BASE SYSTEM!"
+     	clear
+      	echo "INSTALLNG BASE SYSTEM!"
     	pacstrap -K /mnt linux linux-firmware base base-devel
      	echo "MAKING USER!"
  	arch-chroot /mnt useradd $USER
-  	echo "PLEASE SET A PASSWORD FOR THE USER!"
+  	clear
+   	echo "PLEASE SET A PASSWORD FOR THE USER!"
   	arch-chroot /mnt passwd $USER
    	mkdir /mnt/home/$USER
 	arch-chroot /mnt chown -R $USER:$USER /home/$USER
@@ -72,7 +83,8 @@ else
   	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/sudoers
    	cat sudoers > /mnt/etc/sudoers
    	echo "DONE!"
-     	echo "INSTALLING EXTRA PACKAGES!"
+     	clear
+      	echo "INSTALLING EXTRA PACKAGES!"
       	if [ $VER == "gnome" ]
 	then
      	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/gnome-packages.txt
@@ -130,14 +142,32 @@ else
  	echo "EFI STUB SETUP"
 	efibootmgr --create --disk $ROOTTOTORO --part 1 --label "Totoro Linux :3" --loader /vmlinuz-linux --unicode 'root='$ROOTTOTORO' rw initrd=\initramfs-linux.img'	
     echo "DONE!"
+    clear
     echo "GENERATING FSTAB"
     genfstab /mnt >> /mnt/etc/fstab
     echo "DONE"
+    clear
     echo "ENABLING DAEMONS!"
     if [ $VER == "gnome" ]
     then
     arch-chroot /mnt systemctl enable gdm
     fi
+    clear
+    echo "GENERATING LOCALES"
+    echo "Please uncomment the line where your locale is (e.g en_US.UTF-8 UTF-8)"
+    read DJODJ
+    nano /mnt/etc/locale.gen
+    arch-chroot /mny locale-gen
+    echo "DONE!"
+    clear
+    echo "SETTING TIME ZONE"
+    echo "What is your continent?"
+    read CONTINENT
+    echo "What is your timezone in that continent (often capital city)"
+	read ZONE
+ 	arch-chroot /mnt ln -sf /usr/share/zoneinfo/$CONTINENT/$ZONE /etc/localtime
+  	echo "DONE!"
+   
 	if [ $VER == "xfce" ]
  	then
   	arch-chroot /mnt systemctl enable sddm
@@ -145,11 +175,15 @@ else
  	arch-chroot /mnt systemctl enable NetworkManager
   	echo "totoro-linux" > /mnt/etc/hostname
   	echo "DONE"
-   	echo "INSTALLATION COMPLETED! YOU CAN NOW SAFELY REBOOT YOUR COMPUTER!"
+   	clear
     	if [ $VER == "suckless" ]
      	then
-      	echo "You are using the suckless version, there is therefore no DM included, simply run startx after logging to enter your desktop :3"
+      	echo "Notes for suckless: You are using the suckless version, there is therefore no DM included, simply run startx after logging to enter your desktop :3"
        	fi
+    	echo "INSTALLATION COMPLETED! REBOOTING IN 5 SECONDS..."
+     	sleep 5
+      	reboot
+    	
     	else
      	echo "Cancelled!"
       	fi
