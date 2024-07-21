@@ -126,6 +126,10 @@ else
 	fi
 	if [ $VER == "blank" ]
 	then
+ 	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/issue
+       	mv issue /mnt/etc/issue
+	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
+ 	mv os-release /mnt/etc/os-release
 	arch-chroot /mnt pacman -S networkmanager --noconfirm
 	fi
  	if [ $VER == "xfce" ]
