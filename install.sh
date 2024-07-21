@@ -166,9 +166,11 @@ else
     clear
     echo "SETTING TIME ZONE"
     echo "What is your continent?"
+    ls /usr/share/zoneinfo
     read CONTINENT
     echo "What is your timezone in that continent (often capital city)"
-	read ZONE
+	ls /usr/share/zoneinfo/$CONTINENT
+ read ZONE
  	arch-chroot /mnt ln -sf /usr/share/zoneinfo/$CONTINENT/$ZONE /etc/localtime
   	echo "DONE!"
    
