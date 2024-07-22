@@ -3,8 +3,7 @@ echo "Installing Totoro Linux Osaka 06.2024"
 sleep 2
 clear
 lsblk
-echo "What is your disk (/dev/XXX)?"
-read DISK
+DISK=$(lsblk -d -o NAME | grep -E '^[a-z]' | awk '{print "/dev/" $1}' | fzf --prompt="Select a disk: ")
 if [[ $string =~ "nvme" ]]; then
 export ROOTTOTORO=${DISK}p2
 export BOOTTOTORO=${DISK}p1
@@ -161,16 +160,13 @@ else
     echo "Please uncomment the line where your locale is (e.g en_US.UTF-8 UTF-8)"
     read DJODJ
     nano /mnt/etc/locale.gen
-    arch-chroot /mny locale-gen
+    arch-chroot /mnt locale-gen
     echo "DONE!"
     clear
-    echo "SETTING TIME ZONE"
-    echo "What is your continent?"
-    ls /usr/share/zoneinfo
-    read CONTINENT
-    echo "What is your timezone in that continent (often capital city)"
-	ls /usr/share/zoneinfo/$CONTINENT
- read ZONE
+    
+    CONTINENT=$(find /usr/share/zoneinfo -type d | awk -F/ '{print $NF}' | fzf --prompt="Select a zone range")
+    
+	ZONE=$(find /usr/share/zoneinfo/$CONTINENT -type d | awk -F/ '{print $NF}' | fzf --prompt="Select a zone")
  	arch-chroot /mnt ln -sf /usr/share/zoneinfo/$CONTINENT/$ZONE /etc/localtime
   	echo "DONE!"
    
