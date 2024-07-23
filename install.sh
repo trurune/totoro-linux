@@ -1,4 +1,4 @@
-clear
+/clear
 echo "Installing Totoro Linux Osaka 06.2024"
 sleep 2
 clear
@@ -16,7 +16,11 @@ echo "What do you want your username to be?"
 read USER
 clear
 echo "Please pick a Totoro Version (gnome, suckless, xfce, blank)"
-read VER
+echo gnome >> list
+echo suckless >> list
+echo xfce >> list
+echo blank >> list
+VER=$(cat list | fzf)
 clear
 if [ -z VER ]
 then
@@ -168,7 +172,7 @@ else
     
     CONTINENT=$(find /usr/share/zoneinfo -type d | awk -F/ '{print $NF}' | fzf --prompt="Select a zone range")
     
-	ZONE=$(find /usr/share/zoneinfo/$CONTINENT -type d | awk -F/ '{print $NF}' | fzf --prompt="Select a zone")
+	ZONE=$(find /usr/share/zoneinfo/$CONTINENT/ -type d | awk -F/ '{print $NF}' | fzf --prompt="Select a zone")
  	arch-chroot /mnt ln -sf /usr/share/zoneinfo/$CONTINENT/$ZONE /etc/localtime
   	echo "DONE!"
    
