@@ -70,7 +70,7 @@ else
     	echo "DONE!"
      	clear
       	echo "INSTALLNG BASE SYSTEM!"
-    	pacstrap -K /mnt linux linux-firmware base base-devel
+    	pacstrap -K /mnt linux linux-firmware base base-devel networkmanager
      	echo "MAKING USER!"
  	arch-chroot /mnt useradd $USER
   	clear
