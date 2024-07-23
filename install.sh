@@ -11,9 +11,7 @@ else
 export ROOTTOTORO=${DISK}2
 export BOOTTOTORO=${DISK}1
 fi
-clear
-echo "What do you want your username to be?"
-read USER
+
 clear
 echo "Please pick a Totoro Version (gnome, suckless, xfce, blank)"
 echo gnome >> list
@@ -37,10 +35,6 @@ then
 	echo "You have not set your BOOTTOTORO!"
 
 else	
-	if [ -z "$USER" ]
- 	then
-  	echo "You have not set your USERNAME! (password will be set later)"
-   	else
   	echo "Are you sure you want to install Totoro Linux to $ROOTTOTORO? This is irreversible! (Type Y and press enter to confirm, press enter to cancel)"
    	read CONFIRM
    	if [ $CONFIRM == "Y" ]
@@ -76,6 +70,9 @@ else
       	echo "INSTALLNG BASE SYSTEM!"
     	pacstrap -K /mnt linux linux-firmware base base-devel
      	echo "MAKING USER!"
+        clear
+	echo "What do you want your username to be?"
+	read USER
  	arch-chroot /mnt useradd $USER
   	clear
    	arch-chroot /mnt pacman-key --init
@@ -194,7 +191,6 @@ else
     	
     	else
      	echo "Cancelled!"
-      	fi
 fi
 fi
 fi
