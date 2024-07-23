@@ -74,6 +74,8 @@ else
      	echo "MAKING USER!"
  	arch-chroot /mnt useradd $USER
   	clear
+   	arch-chroot /mnt pacman-key --init
+    	arch-chroot /mnt pacman-key --populate
    	echo "PLEASE SET A PASSWORD FOR THE USER!"
   	arch-chroot /mnt passwd $USER
    	mkdir /mnt/home/$USER
