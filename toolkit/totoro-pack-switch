@@ -1,5 +1,5 @@
 echo "WARNING! THIS WILL DISABLE YOUR CURRENT DISPLAY MANAGER AND RESET YOUR .XINITRC!"
-echo "Choose a new VER (blank, plasma, xfce, gnome, suckless)
+echo "Choose a new VER (blank, plasma, xfce, gnome, suckless)"
 read VER
 sudo systemctl disable sddm
 sudo systemctl disable gdm
@@ -8,7 +8,8 @@ if [ $VER == "gnome" ]
         then
               sudo pacman -Sy gdm gnome gnome-extras kitty firefox networkmanager --noconfirm
                echo "DONE!"
-        fi
+		sudo systemctl enable gdm       
+ fi
          if [ $VER == "suckless" ]
           then
 
@@ -50,3 +51,4 @@ echo "DONE!"
              echo "DONE!"
 	sudo systemctl enable sddm        
 fi
+echo "Reboot for changes to be applied!"
