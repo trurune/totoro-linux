@@ -1,0 +1,52 @@
+echo "WARNING! THIS WILL DISABLE YOUR CURRENT DISPLAY MANAGER AND RESET YOUR .XINITRC!"
+echo "Choose a new VER (blank, plasma, xfce, gnome, suckless)
+read VER
+sudo systemctl disable sddm
+sudo systemctl disable gdm
+echo "" > ~/.xinitrc
+if [ $VER == "gnome" ]
+        then
+              sudo pacman -Sy gdm gnome gnome-extras kitty firefox networkmanager --noconfirm
+               echo "DONE!"
+        fi
+         if [ $VER == "suckless" ]
+          then
+
+         echo "exec dwm" >> /home/$USER/.xinitrc
+           wget https://raw.githubusercontent.com/trurune/totoro-linux/master/suckless-packages.txt
+            mv suckless-packages.txt packages.txt
+              pacman -S - < /mnt/packages.txt --noconfirm
+               echo "Installing suckless requires some packages to be compiled, please be aware that this may take a while depending on your machine's power"
+        git clone https://git.suckless.org/dwm
+         wget https://raw.githubusercontent.com/trurune/totoro-linux/master/config.h
+          mv config.h dwm/config.h
+         make -C dwm
+          sudo make install -C dwm
+        rm -rf dwm
+        git clone https://git.suckless.org/st
+        make -C st
+        sudo make install -C st
+           rm -rf st
+           git clone https://git.suckless.org/dmenu
+         make -C dmenu
+           sudo make install -C dmenu
+           rm -rf dmenu
+ echo "DONE!"
+        fi
+        if [ $VER == "blank" ]
+        then
+        sudo pacman -Sy networkmanager --noconfirm
+        echo "DONE!"
+	fi
+         if [ $VER == "xfce" ]
+        then
+             sudo pacman -Sy xorg xfce4 kitty firefox networkmanager sddm --noconfirm
+		sudo systemctl enable sddm             
+echo "DONE!"
+        fi
+    if [ $VER == "plasma" ]
+        then
+             sudo pacman -Sy xorg plasma-desktop sddm firefox kitty networkmanager --noconfirm
+             echo "DONE!"
+	sudo systemctl enable sddm        
+fi
