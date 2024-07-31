@@ -161,7 +161,7 @@ else
     echo "Please uncomment the line where your locale is (e.g en_US.UTF-8 UTF-8)"
     read DJODJ
     nano /mnt/etc/locale.gen
-    arch-chroot /mny locale-gen
+    arch-chroot /mnt locale-gen
     echo "DONE!"
     clear
     echo "SETTING TIME ZONE"
