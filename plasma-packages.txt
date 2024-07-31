@@ -1,0 +1,6 @@
+sddm
+plasma-desktop
+xorg
+firefox
+kitty
+networkmanager
