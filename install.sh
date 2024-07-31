@@ -79,7 +79,7 @@ else
   	arch-chroot /mnt passwd $USER
    	mkdir /mnt/home/$USER
 	arch-chroot /mnt chown -R $USER:$USER /home/$USER
- 	arch-chroot /mnt usermod -a -G wheel alex
+ 	arch-chroot /mnt usermod -a -G wheel $USER
   	wget https://raw.githubusercontent.com/trurune/totoro-linux/master/sudoers
    	cat sudoers > /mnt/etc/sudoers
    	echo "DONE!"
