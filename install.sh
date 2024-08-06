@@ -1,5 +1,5 @@
 clear
-echo "Installing Totoro Linux Orion 1.0.0"
+echo "Installing Totoro Linux Orion 5.0.0"
 sleep 2
 clear
 fdisk -l
