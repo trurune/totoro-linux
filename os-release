@@ -1,6 +1,6 @@
-NAME="Totoro Linux"
-PRETTY_NAME="Totoro Linux"
-ID=totoro
+NAME="Ascend Linux"
+PRETTY_NAME="Ascend Linux"
+ID=ascend
 BUILD_ID=rolling
 ANSI_COLOR="0;31"
 HOME_URL="https://archlinux.org/"
