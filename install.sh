@@ -1,5 +1,5 @@
 clear
-echo "Installing Totoro Linux Aurora 08.2024"
+echo "Installing Totoro Linux Orion 09.2024"
 sleep 2
 clear
 lsblk
