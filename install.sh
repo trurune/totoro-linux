@@ -1,8 +1,8 @@
 clear
-echo "Installing Totoro Linux Aurora 08.2024"
-sleep 2
+echo "Installing Totoro Linux Orion 09.2024"
+sleep 3
 clear
-lsblk
+fdisk -l
 echo "WARNING: Choosing the wrong disk may cause data loss!"
 echo "What is your disk (/dev/xxx)?"
 read DISK
@@ -170,7 +170,7 @@ else
     fi
     clear
     echo "GENERATING LOCALES"
-    echo "Please uncomment the line where your locale is (e.g en_US.UTF-8 UTF-8)"
+    echo "Please uncomment the line where your locale is"
     read DJODJ
     nano /mnt/etc/locale.gen
     arch-chroot /mnt locale-gen
@@ -180,7 +180,7 @@ else
     echo "What is your continent?"
     ls /usr/share/zoneinfo
     read CONTINENT
-    echo "What is your timezone in that continent (often capital city)"
+    echo "What is your timezone in that continent"
         ls /usr/share/zoneinfo/$CONTINENT
  read ZONE
          arch-chroot /mnt ln -sf /usr/share/zoneinfo/$CONTINENT/$ZONE /etc/localtime
@@ -202,8 +202,8 @@ else
              then
               echo "Notes for suckless: You are using the suckless version, there is therefore no DM included, simply run startx after logging to enter your desktop :3"
                fi
-            echo "INSTALLATION COMPLETED! REBOOTING IN 5 SECONDS..."
-             sleep 5
+            echo "INSTALLATION COMPLETED! REBOOTING IN 3 SECONDS."
+             sleep 3
               reboot
 
             else
