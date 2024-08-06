@@ -17,7 +17,7 @@ clear
 echo "What do you want your username to be?"
 read USER
 clear
-echo "Please pick a Totoro Version (gnome, suckless, xfce, plasma, blank)"
+echo "Please pick a Totoro Version (gnome, suckless, xfce, plasma, lxqt, blank)"
 read VER
 clear
 if [ -z "$VER" ]; then
@@ -141,6 +141,14 @@ else
                         arch-chroot /mnt pacman -Sy xorg plasma-desktop sddm firefox kitty networkmanager --noconfirm
                         echo "DONE!"
                     fi
+                    if [ "$VER" == "lxqt" ]; then
+                        wget https://raw.githubusercontent.com/trurune/totoro-linux/master/issue
+                        mv issue /mnt/etc/issue
+                        wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
+                        mv os-release /mnt/etc/os-release
+                        arch-chroot /mnt pacman -Sy xorg lxqt networkmanager breeze-icons sddm --noconfirm
+                        echo "DONE!"
+                    fi
                     echo "EFI STUB SETUP"
                     efibootmgr --create --disk $ROOTTOTORO --part 1 --label "Totoro Linux :3" --loader /vmlinuz-linux --unicode 'root='$ROOTTOTORO' rw initrd=\initramfs-linux.img'        
                     echo "DONE!"
@@ -175,6 +183,9 @@ else
                         arch-chroot /mnt systemctl enable sddm
                     fi
                     if [ "$VER" == "xfce" ]; then
+                        arch-chroot /mnt systemctl enable sddm
+                    fi
+                    if [ "$VER" == "lxqt" ]; then
                         arch-chroot /mnt systemctl enable sddm
                     fi
                     arch-chroot /mnt systemctl enable NetworkManager
