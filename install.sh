@@ -2,7 +2,7 @@ clear
 echo "Installing Totoro Linux Orion 1.0.0"
 sleep 2
 clear
-lsblk
+fdisk -l
 echo "WARNING: Choosing the wrong disk may cause data loss!"
 echo "What is your disk (/dev/xxx)?"
 read DISK
