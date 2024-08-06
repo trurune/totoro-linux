@@ -146,7 +146,7 @@ else
                         mv issue /mnt/etc/issue
                         wget https://raw.githubusercontent.com/trurune/totoro-linux/master/os-release
                         mv os-release /mnt/etc/os-release
-                        arch-chroot /mnt pacman -Sy xorg lxqt networkmanager breeze-icons sddm --noconfirm
+                        arch-chroot /mnt pacman -Sy xorg lxqt networkmanager breeze-icons sddm firefox --noconfirm
                         echo "DONE!"
                     fi
                     echo "EFI STUB SETUP"
